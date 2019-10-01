@@ -10,7 +10,7 @@ public class TestBoard {
 
     @Before
     public void setUp() throws Exception {
-        board = new Board();
+        board = new Board(3,3);
     }
 
     @After
@@ -20,17 +20,18 @@ public class TestBoard {
 
     @Test
     public void shouldReturnGeneratedEmptyBoard() {
-        char[][] actual = board.generateBoard(3,3);
+        char[][] actual = board.getBoard();
         char[][] expected = {
                 {'*','*','*'},
                 {'*','*','*'},
                 {'*','*','*'}
         };
-        Assert.assertArrayEquals(actual, expected);
+        Assert.assertArrayEquals(expected, actual);
     }
 
+    @Test
     public void shouldReturnTrueForEmptySpot(){
-        int actual = board.isPositionAvailable(1, 3);
+        boolean actual = board.isPositionAvailable(1, 3);
         boolean expected = true;
 
         Assert.assertEquals(expected, actual);
