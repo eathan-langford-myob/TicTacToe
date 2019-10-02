@@ -3,7 +3,7 @@ package com.company;
     private char piece;
     private int player;
 
-     private Player(char piece, int player) {
+    Player(char piece, int player) {
          this.piece = piece;
          this.player = player;
      }

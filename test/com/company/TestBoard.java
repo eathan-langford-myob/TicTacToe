@@ -54,10 +54,9 @@ public class TestBoard {
 
     @Test
     public void shouldPlacePieceOnBoard(){
-        char actual = board.getBoard()[0][2];
-        board.SetPieceOnBoard(player1, 0, 2);
-        char expected = 'X';
+        char actual = board.SetPieceOnBoard(player1, 0, 2);
+        char expected = player1.getPiece();
 
-        Assert.assertEquals('X', expected);
+        Assert.assertEquals(expected, actual);
     }
 }
