@@ -29,6 +29,7 @@ public class Board {
 //    }
 
     public boolean isPositionAvailable(int x, int y) {
-        return board[x-1][y-1]!=('X'|'Y');
+        return board[x][y]==('*');
     }
+
 }
