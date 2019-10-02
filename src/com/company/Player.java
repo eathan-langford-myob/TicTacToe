@@ -3,9 +3,9 @@ package com.company;
     private char piece;
     private int player;
 
-    Player(char piece, int player) {
-         this.piece = piece;
+    Player(int player) {
          this.player = player;
+         this.piece = (player == 1) ? 'X' : 'O';
      }
 
      public char getPiece() {

@@ -17,12 +17,14 @@ public class TestBoard {
         mockBoard = new Board(3,3);
         mockBoard.getBoard()[0][2] = 'X';
 
-        player1 = new Player('X', 1);
+        player1 = new Player(1);
     }
 
     @After
     public void tearDown() throws Exception {
         board = null;
+        mockBoard = null;
+        player1 = null;
     }
 
     @Test
