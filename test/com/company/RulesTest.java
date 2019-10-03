@@ -15,7 +15,7 @@ public class RulesTest {
     Player player1;
     Player player2;
     Board threeAcross;
-    Board threeDiagonal;
+    Board threeDiagonalTopLeft;
     Board threeDown;
 
     @Before
@@ -27,12 +27,12 @@ public class RulesTest {
         gameBoard = new Board(3,3);
 
         threeAcross = new Board(3,3);
-        threeDiagonal = new Board(3,3);
+        threeDiagonalTopLeft = new Board(3,3);
         threeDown = new Board(3,3);
 
         for (int i = 0; i < 3; i++) {
             threeAcross.SetPieceOnBoard(player1,i,0);
-            threeDiagonal.SetPieceOnBoard(player1,i,i);
+            threeDiagonalTopLeft.SetPieceOnBoard(player1,i,i);
             threeDown.SetPieceOnBoard(player1,0,i);
         }
 
@@ -42,24 +42,30 @@ public class RulesTest {
     @After
     public void tearDown() {
         threeAcross = null;
-        threeDiagonal = null;
+        threeDiagonalTopLeft = null;
         threeDown = null;
     }
 
     @Test
     public void shouldReturnWinConditionForThreeAcross() {
-        boolean actual = Rules.checkHorizontalWin(player1, player2, threeAcross);
+        boolean actual = Rules.checkHorizontals(threeAcross);
+        boolean expected = true;
+
+        Assert.assertEquals(expected, actual);
+    }
+    @Test
+    public void shouldReturnWinConditionForThreeDown() {
+        boolean actual = Rules.checkVerticals(threeDown);
         boolean expected = true;
 
         Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void shouldReturnWinConditionForThreeDown() {
-        boolean actual = Rules.checkVerticalWin(player1, player2, threeDown);
+    public void shouldReturnWinConditionForDiagonalLeftTopDown() {
+        boolean actual = Rules.checkVerticalTopLeft(threeDiagonalTopLeft);
         boolean expected = true;
 
         Assert.assertEquals(expected, actual);
     }
-
 }
