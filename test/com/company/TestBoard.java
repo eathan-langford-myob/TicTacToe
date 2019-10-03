@@ -29,8 +29,8 @@ public class TestBoard {
 
     @Test
     public void shouldReturnGeneratedEmptyBoard() {
-        char[][] actual = board.getBoard();
-        char[][] expected = {
+        Character[][] actual = board.getBoard();
+        Character[][] expected = {
                 {'*','*','*'},
                 {'*','*','*'},
                 {'*','*','*'}
