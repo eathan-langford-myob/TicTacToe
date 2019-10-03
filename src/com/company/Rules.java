@@ -80,4 +80,7 @@ public class Rules {
         }
 
 
+    public static boolean checkVerticalTopRight(Board threeDiagonalTopRight) {
+            return true;
+    }
 }

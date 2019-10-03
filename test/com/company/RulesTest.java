@@ -17,6 +17,7 @@ public class RulesTest {
     Board threeAcross;
     Board threeDiagonalTopLeft;
     Board threeDown;
+    Board threeDiagonalTopRight;
 
     @Before
     public void setUp() {
@@ -28,12 +29,15 @@ public class RulesTest {
 
         threeAcross = new Board(3,3);
         threeDiagonalTopLeft = new Board(3,3);
+        threeDiagonalTopRight = new Board(3,3);
         threeDown = new Board(3,3);
-
+        int inverseI =  2;
         for (int i = 0; i < 3; i++) {
             threeAcross.SetPieceOnBoard(player1,i,0);
             threeDiagonalTopLeft.SetPieceOnBoard(player1,i,i);
-            threeDown.SetPieceOnBoard(player1,0,i);
+            threeDiagonalTopRight.SetPieceOnBoard(player1, i,inverseI);
+            threeDown.SetPieceOnBoard(player1,i,i);
+            inverseI-=1;
         }
 
         newGame = new Game();
@@ -68,4 +72,13 @@ public class RulesTest {
 
         Assert.assertEquals(expected, actual);
     }
+
+    @Test
+    public void shouldReturnWinConditionForDiagonalRightTopDown() {
+        boolean actual = Rules.checkVerticalTopRight(threeDiagonalTopRight);
+        boolean expected = true;
+
+        Assert.assertEquals(expected, actual);
+    }
+
 }
