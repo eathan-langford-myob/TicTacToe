@@ -32,7 +32,7 @@ public class Rules {
 //    }
 
         public static boolean checkHorizontals (Board board) {
-        Character[] oneRow = new Character[3];
+        Character[] oneRow = new Character[board.getBoard().length];
         boolean horizontalWin = false;
 
         while (!horizontalWin) {
@@ -49,8 +49,8 @@ public class Rules {
         public static boolean checkVerticals (Board board) {
         boolean verticalWin = false;
         while (!verticalWin) {
-            for (int i = 0; i < board.getBoard()[0].length; i++) {
-                Character[] oneColumn = board.getBoard()[i];
+            for (int x = 0; x < board.getBoard()[0].length; x++) {
+                Character[] oneColumn = board.getBoard()[x];
                 verticalWin = (Arrays.stream(oneColumn).distinct().count() == 1);
             }
         }
@@ -58,8 +58,16 @@ public class Rules {
         }
 
         public static boolean checkVerticalTopLeft(Board board) {
+            Character[] oneDiagnonal = new Character[board.getBoard().length];
+            boolean diagonalWin = false;
 
-            return true;
+            while (!diagonalWin) {
+                    for (int x = 0; x < board.getBoard()[0].length; x++) {
+                        oneDiagnonal[x] = board.getPosition(x, x);
+                    }
+                    diagonalWin = Arrays.stream(oneDiagnonal).distinct().count() == 1;
+                }
+            return diagonalWin;
         }
 
         public static boolean checkWinConditions(Board board) {
