@@ -56,7 +56,7 @@ public class RulesTest {
 
     @Test
     public void shouldReturnWinConditionForThreeDown() {
-        boolean actual = Rules.checkVerticalWin(player1, player2, threeAcross);
+        boolean actual = Rules.checkVerticalWin(player1, player2, threeDown);
         boolean expected = true;
 
         Assert.assertEquals(expected, actual);
