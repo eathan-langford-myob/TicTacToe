@@ -1,7 +1,7 @@
 package com.company;
 
 public class Board {
-    char[][] board;
+    private char[][] board;
 
     public Board(int x, int y){
         char tile = '*';
@@ -15,6 +15,10 @@ public class Board {
 
     public char[][] getBoard(){
         return board;
+    }
+
+    public char getPosition(int x, int y) {
+        return board[x][y];
     }
 
     public boolean isPositionAvailable(int x, int y) {
