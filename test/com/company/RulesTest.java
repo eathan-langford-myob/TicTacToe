@@ -32,11 +32,12 @@ public class RulesTest {
         threeDiagonalTopRight = new Board(3,3);
         threeDown = new Board(3,3);
         int inverseI =  2;
-        for (int i = 0; i < 3; i++) {
+
+        for (int i = 0; i < gameBoard.getBoard().length; i++) {
             threeAcross.SetPieceOnBoard(player1,i,0);
             threeDiagonalTopLeft.SetPieceOnBoard(player1,i,i);
             threeDiagonalTopRight.SetPieceOnBoard(player1, i,inverseI);
-            threeDown.SetPieceOnBoard(player1,i,i);
+            threeDown.SetPieceOnBoard(player1,0,i);
             inverseI-=1;
         }
 
@@ -67,18 +68,25 @@ public class RulesTest {
 
     @Test
     public void shouldReturnWinConditionForDiagonalLeftTopDown() {
-        boolean actual = Rules.checkVerticalTopLeft(threeDiagonalTopLeft);
+        boolean actual = Rules.checkDiagonalTopLeft(threeDiagonalTopLeft);
         boolean expected = true;
 
-        Assert.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
     public void shouldReturnWinConditionForDiagonalRightTopDown() {
-        boolean actual = Rules.checkVerticalTopRight(threeDiagonalTopRight);
+        boolean actual = Rules.checkDiagonalTopRight(threeDiagonalTopRight);
         boolean expected = true;
 
-        Assert.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
+    @Test
+    public void shouldReturnWinConditionForGeneralWinChecking() {
+        boolean actual = Rules.checkWinConditions(threeDown);
+        boolean expected = true;
+
+        assertEquals(expected, actual);
+    }
 }
