@@ -3,9 +3,9 @@ package com.company;
 public class Board {
     private Character[][] board;
 
-    public Board(int x, int y){
+    public Board(int size){
         char tile = '*';
-        board = new Character[x][y];
+        board = new Character[size][size];
         for (Character[] column : board) {
             for (int i = 0; i < column.length; i++) {
                 column[i] = tile;

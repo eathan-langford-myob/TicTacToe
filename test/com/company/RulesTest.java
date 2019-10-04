@@ -25,12 +25,12 @@ public class RulesTest {
         player2 = new Player(2);
 
 
-        gameBoard = new Board(3,3);
+        gameBoard = new Board(3);
 
-        threeAcross = new Board(3,3);
-        threeDiagonalTopLeft = new Board(3,3);
-        threeDiagonalTopRight = new Board(3,3);
-        threeDown = new Board(3,3);
+        threeAcross = new Board(3);
+        threeDiagonalTopLeft = new Board(3);
+        threeDiagonalTopRight = new Board(3);
+        threeDown = new Board(3);
         int inverseI =  2;
 
         for (int i = 0; i < gameBoard.getBoard().length; i++) {
@@ -41,7 +41,7 @@ public class RulesTest {
             inverseI-=1;
         }
 
-        newGame = new Game();
+        newGame = new Game(3);
     }
 
     @After
