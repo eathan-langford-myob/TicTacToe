@@ -24,4 +24,9 @@ public class Game {
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
+
+
+    public Player swapPlayers() {
+        return currentPlayer = (currentPlayer == player1 ? player2 : player1);
+    }
 }
