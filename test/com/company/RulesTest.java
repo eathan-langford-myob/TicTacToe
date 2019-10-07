@@ -68,7 +68,7 @@ public class RulesTest {
 
     @Test
     public void shouldReturnWinConditionForDiagonalLeftTopDown() {
-        boolean actual = Rules.checkDiagonalTopLeft(threeDiagonalTopLeft);
+        boolean actual = Rules.checkDiagonalFromTopLeft(threeDiagonalTopLeft);
         boolean expected = true;
 
         assertEquals(expected, actual);
@@ -76,7 +76,7 @@ public class RulesTest {
 
     @Test
     public void shouldReturnWinConditionForDiagonalRightTopDown() {
-        boolean actual = Rules.checkDiagonalTopRight(threeDiagonalTopRight);
+        boolean actual = Rules.checkDiagonalFromTopRight(threeDiagonalTopRight);
         boolean expected = true;
 
         assertEquals(expected, actual);
