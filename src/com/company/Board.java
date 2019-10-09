@@ -1,19 +1,19 @@
 package com.company;
 
 public class Board {
-    private char[][] board;
+    private Character[][] board;
 
-    public Board(int x, int y){
+    public Board(int size){
         char tile = '*';
-        board = new char[x][y];
-        for (char[] column : board) {
+        board = new Character[size][size];
+        for (Character[] column : board) {
             for (int i = 0; i < column.length; i++) {
                 column[i] = tile;
             }
         }
     }
 
-    public char[][] getBoard(){
+    public Character[][] getBoard(){
         return board;
     }
 

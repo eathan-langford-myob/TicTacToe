@@ -6,60 +6,111 @@ import org.junit.Before;
 import org.junit.Test;
 
 
+import static com.company.Rules.*;
 import static org.junit.Assert.*;
 
 
 public class RulesTest {
-    Game newGame;
-    Board gameBoard;
     Player player1;
     Player player2;
     Board threeAcross;
-    Board threeDiagonal;
+    Board threeDiagonalTopLeft;
     Board threeDown;
+    Board threeDiagonalTopRight;
+
 
     @Before
     public void setUp() {
         player1 = new Player(1);
         player2 = new Player(2);
-
-
-        gameBoard = new Board(3,3);
-
-        threeAcross = new Board(3,3);
-        threeDiagonal = new Board(3,3);
-        threeDown = new Board(3,3);
-
-        for (int i = 0; i < 3; i++) {
-            threeAcross.SetPieceOnBoard(player1,i,0);
-            threeDiagonal.SetPieceOnBoard(player1,i,i);
-            threeDown.SetPieceOnBoard(player1,0,i);
-        }
-
-        newGame = new Game();
     }
 
     @After
     public void tearDown() {
-        threeAcross = null;
-        threeDiagonal = null;
+        threeDiagonalTopLeft = null;
         threeDown = null;
     }
 
     @Test
     public void shouldReturnWinConditionForThreeAcross() {
-        boolean actual = Rules.checkHorizontalWin(player1, player2, threeAcross);
+//            {'X','X','X'}
+//            {'*','*','*'}
+//            {'*','*','*'}
+        threeAcross = new Board(3);
+        threeAcross.SetPieceOnBoard(player1, 0, 0);
+        threeAcross.SetPieceOnBoard(player1, 1, 0);
+        threeAcross.SetPieceOnBoard(player1, 2, 0);
+        int[] lastMove = {1,0};
+
+        boolean actual = checkLinearFromLastMove(threeAcross, lastMove[0], lastMove[1]);
         boolean expected = true;
 
         Assert.assertEquals(expected, actual);
+    }
+    @Test
+    public void shouldReturnWinConditionForThreeDown() {
+//            {'X','*','*'}
+//            {'X','*','*'}
+//            {'X','*','*'}
+        threeDown = new Board(3);
+        threeDown.SetPieceOnBoard(player1, 0, 0);
+        threeDown.SetPieceOnBoard(player1, 0, 1);
+        threeDown.SetPieceOnBoard(player1, 0, 2);
+        int[] lastMove = {0,1};
+
+        boolean actual = checkLinearFromLastMove(threeDown, lastMove[0], lastMove[1]);
+        boolean expected = true;
+
+        Assert.assertEquals(expected, actual);
+    }
+//
+    @Test
+    public void shouldReturnWinConditionForDiagonalLeftTopDown() {
+//               {'X','*','*'}
+//               {'*','X','*'}
+//               {'*','*','X'}
+            threeDiagonalTopLeft = new Board(3);
+            threeDiagonalTopLeft.SetPieceOnBoard(player1, 0, 0);
+            threeDiagonalTopLeft.SetPieceOnBoard(player1, 1, 1);
+            threeDiagonalTopLeft.SetPieceOnBoard(player1, 2, 2);
+            int[] lastMove = {1,1};
+
+        boolean actual = checkDiagonalsFromLastMove(threeDiagonalTopLeft, lastMove[0], lastMove[1]);
+        boolean expected = true;
+
+        assertEquals(expected, actual);
     }
 
     @Test
-    public void shouldReturnWinConditionForThreeDown() {
-        boolean actual = Rules.checkVerticalWin(player1, player2, threeDown);
+    public void shouldReturnWinConditionForDiagonalRightTopDown() {
+//               {'*','*','X'}
+//               {'*','X','*'}
+//               {'X','*','*'}
+        threeDiagonalTopRight = new Board(3);
+        threeDiagonalTopRight.SetPieceOnBoard(player1, 2, 0);
+        threeDiagonalTopRight.SetPieceOnBoard(player1, 1, 1);
+        threeDiagonalTopRight.SetPieceOnBoard(player1, 0, 2);
+        int[] lastMove = {0,2};
+
+        boolean actual = checkDiagonalsFromLastMove(threeDiagonalTopRight, lastMove[0], lastMove[1]);
         boolean expected = true;
 
-        Assert.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
+    @Test
+    public void shouldReturnWinConditionForWinCheckingDiagonalBoard() {
+//                       {'*','*','X'}
+//                       {'*','X','*'}
+//                       {'X','*','*'}
+        threeDiagonalTopRight = new Board(3);
+        threeDiagonalTopRight.SetPieceOnBoard(player1, 2, 0);
+        threeDiagonalTopRight.SetPieceOnBoard(player1, 1, 1);
+        threeDiagonalTopRight.SetPieceOnBoard(player1, 0, 2);
+        int[] lastMove = {0,2};
+        boolean actual = checkWinConditions(threeDiagonalTopRight, lastMove[0], lastMove[1]);
+        boolean expected = true;
+
+        assertEquals(expected, actual);
+    }
 }

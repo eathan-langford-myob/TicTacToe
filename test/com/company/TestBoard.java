@@ -12,9 +12,9 @@ public class TestBoard {
 
     @Before
     public void setUp() throws Exception {
-        board = new Board(3,3);
+        board = new Board(3);
 
-        mockBoard = new Board(3,3);
+        mockBoard = new Board(3);
         mockBoard.getBoard()[0][2] = 'X';
 
         player1 = new Player(1);
@@ -29,8 +29,8 @@ public class TestBoard {
 
     @Test
     public void shouldReturnGeneratedEmptyBoard() {
-        char[][] actual = board.getBoard();
-        char[][] expected = {
+        Character[][] actual = board.getBoard();
+        Character[][] expected = {
                 {'*','*','*'},
                 {'*','*','*'},
                 {'*','*','*'}
