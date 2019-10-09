@@ -6,7 +6,7 @@ import static junit.framework.TestCase.assertEquals;
 
 public class InputGetterTest {
         @Test
-        void getAllInput_whenCalledWithInputReaderWithOnelLine_ReturnsAllInput_USESFAKEIMPLEMENTATION() {
+        public void getInputWhenGetterMethodIsCalled_MOCKDATA() {
             IInputReader inputReader = new MockStringInputReader("2,0");
             InputGetter inputGetter = new InputGetter(inputReader);
             String actual = inputGetter.getInput();
