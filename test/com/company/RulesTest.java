@@ -11,22 +11,18 @@ import static org.junit.Assert.*;
 
 
 public class RulesTest {
-    Game newGame;
-    Board gameBoard;
     Player player1;
     Player player2;
+    Board threeAcross;
     Board threeDiagonalTopLeft;
     Board threeDown;
     Board threeDiagonalTopRight;
+
 
     @Before
     public void setUp() {
         player1 = new Player(1);
         player2 = new Player(2);
-
-
-        gameBoard = new Board(3);
-        newGame = new Game(3);
     }
 
     @After
@@ -40,7 +36,7 @@ public class RulesTest {
 //            {'X','X','X'}
 //            {'*','*','*'}
 //            {'*','*','*'}
-        Board threeAcross = new Board(3);
+        threeAcross = new Board(3);
         threeAcross.SetPieceOnBoard(player1, 0, 0);
         threeAcross.SetPieceOnBoard(player1, 1, 0);
         threeAcross.SetPieceOnBoard(player1, 2, 0);
@@ -56,7 +52,7 @@ public class RulesTest {
 //            {'X','*','*'}
 //            {'X','*','*'}
 //            {'X','*','*'}
-        Board threeDown = new Board(3);
+        threeDown = new Board(3);
         threeDown.SetPieceOnBoard(player1, 0, 0);
         threeDown.SetPieceOnBoard(player1, 0, 1);
         threeDown.SetPieceOnBoard(player1, 0, 2);
@@ -73,7 +69,7 @@ public class RulesTest {
 //               {'X','*','*'}
 //               {'*','X','*'}
 //               {'*','*','X'}
-            Board threeDiagonalTopLeft = new Board(3);
+            threeDiagonalTopLeft = new Board(3);
             threeDiagonalTopLeft.SetPieceOnBoard(player1, 0, 0);
             threeDiagonalTopLeft.SetPieceOnBoard(player1, 1, 1);
             threeDiagonalTopLeft.SetPieceOnBoard(player1, 2, 2);
@@ -90,7 +86,7 @@ public class RulesTest {
 //               {'*','*','X'}
 //               {'*','X','*'}
 //               {'X','*','*'}
-        Board threeDiagonalTopRight = new Board(3);
+        threeDiagonalTopRight = new Board(3);
         threeDiagonalTopRight.SetPieceOnBoard(player1, 2, 0);
         threeDiagonalTopRight.SetPieceOnBoard(player1, 1, 1);
         threeDiagonalTopRight.SetPieceOnBoard(player1, 0, 2);
@@ -107,7 +103,7 @@ public class RulesTest {
 //                       {'*','*','X'}
 //                       {'*','X','*'}
 //                       {'X','*','*'}
-        Board threeDiagonalTopRight = new Board(3);
+        threeDiagonalTopRight = new Board(3);
         threeDiagonalTopRight.SetPieceOnBoard(player1, 2, 0);
         threeDiagonalTopRight.SetPieceOnBoard(player1, 1, 1);
         threeDiagonalTopRight.SetPieceOnBoard(player1, 0, 2);
