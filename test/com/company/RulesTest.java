@@ -37,12 +37,14 @@ public class RulesTest {
 //            {'*','*','*'}
 //            {'*','*','*'}
         threeAcross = new Board(3);
+        Character[][] board = threeAcross.getBoard();
         threeAcross.SetPieceOnBoard(player1, 0, 0);
         threeAcross.SetPieceOnBoard(player1, 1, 0);
         threeAcross.SetPieceOnBoard(player1, 2, 0);
         int[] lastMove = {1,0};
-
-        boolean actual = checkLinearFromLastMove(threeAcross, lastMove[0], lastMove[1]);
+        int[] startPosition = {board[0][0]};
+        int[] endPosition = {board.length-1,0};
+        boolean actual = checkWinConditions(startPosition, endPosition);
         boolean expected = true;
 
         Assert.assertEquals(expected, actual);

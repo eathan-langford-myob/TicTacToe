@@ -10,6 +10,10 @@ class InputValidator {
     }
 
     public static boolean isValidInputWithinBoard(String input, Board board) {
-        return true;
+        String[] arrayFromSplitInput = input.split(",");
+        if( (arrayFromSplitInput[0].length() == arrayFromSplitInput[1].length() && arrayFromSplitInput[0].length() < board.getBoard().length) ){
+
+        }
+    return false;
     }
 }
