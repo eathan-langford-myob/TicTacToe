@@ -4,44 +4,62 @@ import java.util.Arrays;
 
 public class Rules {
 
-    public static boolean checkWin(int[] startPosition, int[] endPosition, Board board) {
+    public static boolean checkBoardForWinState(Board board) {
+//        checkWinInSingleDirection(startPosition, endPosition, board);
+        int boardLength = board.getBoard().length;
+
+        boolean isWinPresent;
+            for (int i = 0; i < board.getBoard().length; i++) {
+                isWinPresent =
+                        checkWinInSingleDirection(0,i, boardLength-1,i, board) ||
+                        checkWinInSingleDirection(i,0, i,boardLength-1, board);
+
+                if (isWinPresent){
+                    return true;
+                }
+            }
+                isWinPresent = checkWinInSingleDirection(0,0, boardLength-1,boardLength-1, board) || checkWinInSingleDirection(0,boardLength-1, (-1 * 0 + (boardLength-1)),0, board);
+        return isWinPresent;
+    }
+
+    static boolean checkWinInSingleDirection(int startX, int startY, int endX, int endY, Board board) {
         int boardBoundary = board.getBoard().length-1;
-        int[] nextPosition = new int[2];
-        int startX = startPosition[0];
-        int startY = startPosition[1];
-        int endX = endPosition[0];
-        int endY = endPosition[1];
+        int nextPositionX;
+        int nextPositionY;
 
 
-        if (startPosition[0] < 0 || startPosition[1] < 0){
+        if ( (board.getPosition(startX,startY)) == '*' ){
             return false;
         }
-        if (Arrays.equals(startPosition, endPosition)) {
+        if (startX < 0 || startY < 0){
+            return false;
+        }
+        if (startX == endX && startY == endY) {
             return true;
         }
         if (startX <= endX) {
             if ( (startX < endX) && (startY > endY) ) {
-                nextPosition[0] = (startX+1 <= boardBoundary) ? startX+1 : startX;
-                nextPosition[1] = (startY-1 < 0) ? startY : startY-1;
-                return board.getPosition(startX, startY) == board.getPosition(nextPosition[0], nextPosition[1]) && checkWin(nextPosition, endPosition, board);
+                nextPositionX = (startX+1 <= boardBoundary) ? startX+1 : startX;
+                nextPositionY = (startY-1 < 0) ? startY : startY-1;
+                return board.getPosition(startX, startY) == board.getPosition(nextPositionX, nextPositionY) && checkWinInSingleDirection(nextPositionX, nextPositionY, endX, endY, board);
             }
 
             if(startY == endY){
-                nextPosition[0] = (startX+1 <= boardBoundary) ? startX+1 : startX;
-                nextPosition[1] = startY;
-                return (board.getPosition(startX, startY) == board.getPosition(nextPosition[0], nextPosition[1])) && checkWin(nextPosition, endPosition, board);
+                nextPositionX = (startX+1 <= boardBoundary) ? startX+1 : startX;
+                nextPositionY = startY;
+                return (board.getPosition(startX, startY) == board.getPosition(nextPositionX, nextPositionY)) && checkWinInSingleDirection(nextPositionX, nextPositionY, endX, endY, board);
             }
 
             if(startX == endX){
-                nextPosition[0] = startX;
-                nextPosition[1] = (startY+1 <= boardBoundary) ? startY+1 : startY;
-                return board.getPosition(startX, startY) == board.getPosition(nextPosition[0], nextPosition[1]) && checkWin(nextPosition, endPosition, board);
+                nextPositionX = startX;
+                nextPositionY = (startY+1 <= boardBoundary) ? startY+1 : startY;
+                return board.getPosition(startX, startY) == board.getPosition(nextPositionX, nextPositionY) && checkWinInSingleDirection(nextPositionX, nextPositionY, endX, endY, board);
             }
 
             if (startX == startY) {
-                nextPosition[0] = (startX+1 <= boardBoundary) ? startX+1 : startX;
-                nextPosition[1] = (startY+1 <= boardBoundary) ? startY+1 : startY;
-                return board.getPosition(startX, startY) == board.getPosition(nextPosition[0], nextPosition[1]) && checkWin(nextPosition, endPosition, board);
+                nextPositionX = (startX+1 <= boardBoundary) ? startX+1 : startX;
+                nextPositionY = (startY+1 <= boardBoundary) ? startY+1 : startY;
+                return board.getPosition(startX, startY) == board.getPosition(nextPositionX, nextPositionY) && checkWinInSingleDirection(nextPositionX, nextPositionY, endX, endY, board);
             }
 
             return false;
