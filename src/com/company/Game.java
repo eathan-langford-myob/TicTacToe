@@ -1,6 +1,6 @@
 package com.company;
 
-import java.io.Console;
+import com.company.IO.IOUserInputOutput;
 
 public class Game {
 

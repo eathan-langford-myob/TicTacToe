@@ -1,4 +1,4 @@
-package com.company;
+package com.company.IO;
 
 public interface IOUserInputOutput {
     String nextLine();

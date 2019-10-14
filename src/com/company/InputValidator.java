@@ -9,10 +9,13 @@ class InputValidator {
         return false;
     }
 
-    public static boolean isValidInputWithinBoard(String input, Board board) {
-        String[] arrayFromSplitInput = input.split(",");
-        if( (arrayFromSplitInput[0].length() == arrayFromSplitInput[1].length() && arrayFromSplitInput[0].length() < board.getBoard().length) ){
-
+    public static boolean isValidInputWithinBoardRange(String input, int boardBounds) {
+        String[] stringArrayOfInput = input.split(",");
+        int[] arrayFromSplitInput = new int[2];
+        arrayFromSplitInput[0] = Integer.parseInt(stringArrayOfInput[0]);
+        arrayFromSplitInput[1] = Integer.parseInt(stringArrayOfInput[1]);
+        if ( (arrayFromSplitInput[0] <= boardBounds) && (arrayFromSplitInput[1] <= boardBounds) && (stringArrayOfInput[0].length() == stringArrayOfInput[1].length())){
+            return true;
         }
     return false;
     }

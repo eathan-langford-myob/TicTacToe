@@ -21,7 +21,7 @@ public class InputValidatorTest {
 
     @Test
     public void shouldReturnTrueForValidFormatString(){
-        boolean actual = InputValidator.isValidFormatWithDigits("2,0");
+        boolean actual = InputValidator.isValidFormatWithDigits(userInputValidString);
 
         Assert.assertTrue(actual);
     }
@@ -29,7 +29,8 @@ public class InputValidatorTest {
     @Test
     public void shouldReturnTrueForNumbersInStringWithinBoundsOfBoard() {
         Board board = new Board(3);
-        boolean actual = InputValidator.isValidInputWithinBoard(userInputValidString, board);
+        int boardBoundary = board.getBoard().length -1;
+        boolean actual = InputValidator.isValidInputWithinBoardRange(userInputValidString, boardBoundary);
 
         Assert.assertTrue(actual);
         }

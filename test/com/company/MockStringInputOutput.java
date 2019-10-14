@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.IO.IOUserInputOutput;
+
 public class MockStringInputOutput implements IOUserInputOutput {
     private String mockInput;
 

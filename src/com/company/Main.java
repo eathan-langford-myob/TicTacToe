@@ -1,5 +1,5 @@
 package com.company;
-import com.company.ConsoleInputOutput;
+import com.company.IO.ConsoleInputOutput;
 
 public class Main {
 
