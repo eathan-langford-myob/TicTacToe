@@ -1,12 +1,10 @@
 package com.company;
 
+import com.company.IO.ConsoleInputOutput;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-
-import static org.junit.Assert.*;
 
 
 public class GameTest {
@@ -14,7 +12,7 @@ public class GameTest {
 
     @Before
     public void setUp() {
-        game = new Game(3);
+        game = new Game(3, new ConsoleInputOutput());
     }
 
     @After
