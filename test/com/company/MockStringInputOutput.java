@@ -4,6 +4,7 @@ import com.company.IO.IOUserInputOutput;
 
 public class MockStringInputOutput implements IOUserInputOutput {
     private String mockInput;
+    private String mockOutput;
 
     MockStringInputOutput(String input) {
         this.mockInput = input;

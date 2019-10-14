@@ -43,7 +43,7 @@ public class RulesTest {
         threeAcross.SetPieceOnBoard(player1, 2, 0);
         int[] startPosition = {0,0};
         int[] endPosition = {board.length-1,0};
-        boolean actual = checkWin(startPosition, endPosition, threeAcross);
+        boolean actual = checkWinInSingleDirection(startPosition, endPosition, threeAcross);
         boolean expected = true;
 
         Assert.assertEquals(expected, actual);
@@ -60,7 +60,7 @@ public class RulesTest {
         threeDown.SetPieceOnBoard(player1, 0, 2);
         int[] startPosition = {0,0};
         int[] endPosition = {0,board.length-1};
-        boolean actual = checkWin(startPosition, endPosition, threeDown);
+        boolean actual = checkWinInSingleDirection(startPosition, endPosition, threeDown);
         boolean expected = true;
 
         Assert.assertEquals(expected, actual);
@@ -78,7 +78,7 @@ public class RulesTest {
             threeDiagonalTopLeft.SetPieceOnBoard(player1, 2, 2);
             int[] startPosition = {0,0};
             int[] endPosition = {board.length-1,board.length-1};
-            boolean actual = checkWin(startPosition, endPosition, threeDiagonalTopLeft);
+            boolean actual = checkWinInSingleDirection(startPosition, endPosition, threeDiagonalTopLeft);
             boolean expected = true;
 
         assertEquals(expected, actual);
@@ -96,25 +96,27 @@ public class RulesTest {
         threeDiagonalTopRight.SetPieceOnBoard(player1, 0, 2);
         int[] startPosition = {0,board.length-1};
         int[] endPosition = {board.length-1,0};
-        boolean actual = checkWin(startPosition, endPosition, threeDiagonalTopRight);
+        boolean actual = checkWinInSingleDirection(startPosition, endPosition, threeDiagonalTopRight);
         boolean expected = true;
 
         assertEquals(expected, actual);
     }
 
     @Test
-    public void shouldReturnWinConditionForWinCheckingDiagonalBoard() {
-////                       {'*','*','X'}
-////                       {'*','X','*'}
-////                       {'X','*','*'}
-//        threeDiagonalTopRight = new Board(3);
-//        threeDiagonalTopRight.SetPieceOnBoard(player1, 2, 0);
-//        threeDiagonalTopRight.SetPieceOnBoard(player1, 1, 1);
-//        threeDiagonalTopRight.SetPieceOnBoard(player1, 0, 2);
-//        int[] lastMove = {0,2};
-//        boolean actual = checkWinConditions(threeDiagonalTopRight, lastMove[0], lastMove[1]);
-//        boolean expected = true;
+    public void shouldReturnTrueForWinCheckingWholeBoard() {
+////                       {'*','O','*'}
+////                       {'X','X','X'}
+////                       {'O','*','*'}
+        Board mockPlayedBoardHorizontalWin = new Board(3);
+        Character[][] board = mockPlayedBoardHorizontalWin.getBoard();
+        mockPlayedBoardHorizontalWin.SetPieceOnBoard(player1, 0, 1);
+        mockPlayedBoardHorizontalWin.SetPieceOnBoard(player2, 2, 1);
+        mockPlayedBoardHorizontalWin.SetPieceOnBoard(player1, 1, 1);
+        mockPlayedBoardHorizontalWin.SetPieceOnBoard(player2, 0, 2);
+        mockPlayedBoardHorizontalWin.SetPieceOnBoard(player1, 2, 1);
+        boolean actual = checkBoardForWinState(mockPlayedBoardHorizontalWin);
+        boolean expected = true;
 
-//        assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 }
