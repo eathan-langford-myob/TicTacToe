@@ -46,13 +46,18 @@ public class Rules {
 //            // IF X IS THE SAME
             if(startX == endX){
                 nextPosition[0] = startX;
-                nextPosition[1] = (startY+1 <= boardBoundary) ? startY+1 : startY;;
+                nextPosition[1] = (startY+1 <= boardBoundary) ? startY+1 : startY;
                 return board.getPosition(startX, startY) == board.getPosition(nextPosition[0], nextPosition[1]) && checkWin(nextPosition, endPosition, board);
             }
+
 //            //DIAGONAL LEFT RIGHT
 //            // X == Y
 //            // IF THEY ==
-
+            if (startX == startY) {
+                nextPosition[0] = (startX+1 <= boardBoundary) ? startX+1 : startX;
+                nextPosition[1] = (startY+1 <= boardBoundary) ? startY+1 : startY;
+                return board.getPosition(startX, startY) == board.getPosition(nextPosition[0], nextPosition[1]) && checkWin(nextPosition, endPosition, board);
+            }
 //            //DIAGONAL RIGHT LEFT
 //            // X++ Y--
 //            //IF X IS LESS, Y IS MORE
