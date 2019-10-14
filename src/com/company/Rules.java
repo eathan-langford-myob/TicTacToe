@@ -32,7 +32,14 @@ public class Rules {
 
             //CHECK IF X IS LESS, ADD 1, IF X IS MORE MINUS 1, ELSE EQUALS THE SAME
             //CHECK IF Y IS LESS, ADD 1, IF Y IS MORE MINUS 1, ELSE EQUALS THE SAME
-
+//            //DIAGONAL RIGHT LEFT
+//            // X++ Y--
+//            //IF X IS LESS, Y IS MORE
+            if ( (startX < endX) && (startY > endY) ) {
+                nextPosition[0] = (startX+1 <= boardBoundary) ? startX+1 : startX;
+                nextPosition[1] = (startY-1 < 0) ? startY : startY-1;
+                return board.getPosition(startX, startY) == board.getPosition(nextPosition[0], nextPosition[1]) && checkWin(nextPosition, endPosition, board);
+            }
             //HORIZONTAL
             // X++ Y
             // IF Y IS THE SAME
@@ -58,13 +65,9 @@ public class Rules {
                 nextPosition[1] = (startY+1 <= boardBoundary) ? startY+1 : startY;
                 return board.getPosition(startX, startY) == board.getPosition(nextPosition[0], nextPosition[1]) && checkWin(nextPosition, endPosition, board);
             }
-//            //DIAGONAL RIGHT LEFT
-//            // X++ Y--
-//            //IF X IS LESS, Y IS MORE
 
             return false;
         }
-
         // Check whether end pos > start pos
         // If so add one to x or y or both
         // Otherwise minus one to x or y or both (mainly diagonal)

@@ -96,7 +96,7 @@ public class RulesTest {
         threeDiagonalTopRight.SetPieceOnBoard(player1, 0, 2);
         int[] startPosition = {0,board.length-1};
         int[] endPosition = {board.length-1,0};
-        boolean actual = checkWin(startPosition, endPosition, threeDiagonalTopLeft);
+        boolean actual = checkWin(startPosition, endPosition, threeDiagonalTopRight);
         boolean expected = true;
 
         assertEquals(expected, actual);
