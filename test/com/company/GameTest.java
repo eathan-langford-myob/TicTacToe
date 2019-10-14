@@ -14,7 +14,7 @@ public class GameTest {
 
     @Before
     public void setUp() {
-        game = new Game(3);
+        game = new Game(3, new ConsoleInputOutput());
     }
 
     @After

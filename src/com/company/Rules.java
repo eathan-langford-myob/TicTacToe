@@ -4,47 +4,64 @@ import java.util.Arrays;
 
 public class Rules {
 
-    private static int NUMBER_TO_WIN = 3;
-    //maybe grab first element from passed coords, then check the next, if true move on, if not stop.
+    public static boolean checkWin(int[] startPosition, int[] endPosition, Board board) {
+        int boardBoundary = board.getBoard().length-1;
+        int[] nextPosition = new int[2];
+        int startX = startPosition[0];
+        int startY = startPosition[1];
+        int endX = endPosition[0];
+        int endY = endPosition[1];
 
-    public static boolean checkLinearFromLastMove(Board board, int x, int y) {
-        char playerLastMove = board.getPosition(x, y);
-        int boardLength = board.getBoard().length;
-        boolean horizontalWinCounter = true;
-        boolean verticalWinCounter = true;
 
-        for (int i = 0; i < boardLength; i++) {
-            if (board.getPosition(i, y) != playerLastMove) {
-                horizontalWinCounter = false;
-            }
-            if (board.getPosition(x, i) != playerLastMove) {
-                verticalWinCounter = false;
-            }
+        if (startPosition[0] < 0 || startPosition[1] < 0){
+            return false;
         }
-        return (horizontalWinCounter) || (verticalWinCounter) ;
-    }
-    public static boolean checkDiagonalsFromLastMove(Board board, int x, int y) {
-        char playerLastMovePiece = board.getPosition(x, y);
-        int boardLength = board.getBoard().length;
-        int winCounterTopLeftToBottomRight = 0;
-        int winCounterTopRightToBottomLeft = 0;
-
-        for (int i = 0; i < boardLength; i++) {
-            if (board.getPosition(i,i) == playerLastMovePiece){
-                winCounterTopLeftToBottomRight++;
-            }
-            if (board.getPosition(i, (-1*i+(boardLength-1))) == playerLastMovePiece){
-                winCounterTopRightToBottomLeft++;
-            }
+        if (Arrays.equals(startPosition, endPosition)) {
+            return true;
         }
-     return (winCounterTopLeftToBottomRight == boardLength) || (winCounterTopRightToBottomLeft == boardLength);
-    }
+        //   [x,y] --horizontal---> [x,y]
+        //   [0,0] ---------------> [2,0]
+        //     |
+        //     |
+        //     V
+        //   [0,2]
+        // Check whether end pos > start pos || COMPARE X AND Y TO DETERMINE DIRECTION
+        //for example, 0,2 and 2,2, are x the same, if not, add 1. are y the same? yes, dont change. you end up with 1,2.
+        if (startX <= endX) {
+//            nextPosition = {startingPosition[0], startingPosition[1]++};
 
-    public static boolean checkWinConditions(int[] startingPosition, int[] endingPosition){
-        return checkWin(startingPosition, endingPosition);
-    }
+            //CHECK IF X IS LESS, ADD 1, IF X IS MORE MINUS 1, ELSE EQUALS THE SAME
+            //CHECK IF Y IS LESS, ADD 1, IF Y IS MORE MINUS 1, ELSE EQUALS THE SAME
 
-    public static boolean checkWin(int[] startingPosition, int[] endPosition) {
+            //HORIZONTAL
+            // X++ Y
+            // IF Y IS THE SAME
+            if(startY == endY){
+                nextPosition[0] = (startX+1 <= boardBoundary) ? startX+1 : startX;
+//                if (startX++ <= boardBoundary){
+//                    startX++;
+//                }
+                nextPosition[1] = startY;
+             return (board.getPosition(startX, startY) == board.getPosition(nextPosition[0], nextPosition[1])) && checkWin(nextPosition, endPosition, board);
+            }
+//            //VERTICAL
+//            // X   Y++
+//            // IF X IS THE SAME
+
+
+//            //DIAGONAL LEFT RIGHT
+//            // X == Y
+//            // IF THEY ==
+
+
+//            //DIAGONAL RIGHT LEFT
+//            // X++ Y--
+//            //IF X IS LESS, Y IS MORE
+
+
+            return false;
+        }
+
         // Check whether end pos > start pos
         // If so add one to x or y or both
         // Otherwise minus one to x or y or both (mainly diagonal)
@@ -56,16 +73,8 @@ public class Rules {
         // If same then increment startPos parameter and call same function again
         // If not return false
         // Loop can also finish when current startPos == endPos
-        return true;
-    }
+        return false;
 
-    public static boolean checkWinConditions(Board board, int x, int y) {
-
-        boolean diagonalsAvailableFromPiece = (x == y) || (y == (-1 * x + (board.getBoard().length-1)));
-
-        if (diagonalsAvailableFromPiece) {
-            return checkDiagonalsFromLastMove(board, x, y) || checkLinearFromLastMove(board, x, y);
-        }
-        return checkLinearFromLastMove(board, x, y);
+        //
     }
 }
