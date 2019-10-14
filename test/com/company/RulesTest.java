@@ -43,7 +43,7 @@ public class RulesTest {
         threeAcross.SetPieceOnBoard(player1, 2, 0);
         int[] startPosition = {0,0};
         int[] endPosition = {board.length-1,0};
-        boolean actual = checkWinInSingleDirection(startPosition, endPosition, threeAcross);
+        boolean actual = checkWinInSingleDirection(startPosition[0],startPosition[1], endPosition[0], endPosition[1], threeAcross);
         boolean expected = true;
 
         Assert.assertEquals(expected, actual);
@@ -60,7 +60,7 @@ public class RulesTest {
         threeDown.SetPieceOnBoard(player1, 0, 2);
         int[] startPosition = {0,0};
         int[] endPosition = {0,board.length-1};
-        boolean actual = checkWinInSingleDirection(startPosition, endPosition, threeDown);
+        boolean actual = checkWinInSingleDirection(startPosition[0],startPosition[1], endPosition[0], endPosition[1], threeDown);
         boolean expected = true;
 
         Assert.assertEquals(expected, actual);
@@ -78,7 +78,7 @@ public class RulesTest {
             threeDiagonalTopLeft.SetPieceOnBoard(player1, 2, 2);
             int[] startPosition = {0,0};
             int[] endPosition = {board.length-1,board.length-1};
-            boolean actual = checkWinInSingleDirection(startPosition, endPosition, threeDiagonalTopLeft);
+            boolean actual = checkWinInSingleDirection(startPosition[0],startPosition[1], endPosition[0], endPosition[1], threeDiagonalTopLeft);
             boolean expected = true;
 
         assertEquals(expected, actual);
@@ -96,7 +96,7 @@ public class RulesTest {
         threeDiagonalTopRight.SetPieceOnBoard(player1, 0, 2);
         int[] startPosition = {0,board.length-1};
         int[] endPosition = {board.length-1,0};
-        boolean actual = checkWinInSingleDirection(startPosition, endPosition, threeDiagonalTopRight);
+        boolean actual = checkWinInSingleDirection(startPosition[0],startPosition[1], endPosition[0], endPosition[1], threeDiagonalTopRight);
         boolean expected = true;
 
         assertEquals(expected, actual);
@@ -104,9 +104,9 @@ public class RulesTest {
 
     @Test
     public void shouldReturnTrueForWinCheckingWholeBoard() {
-////                       {'*','O','*'}
-////                       {'X','X','X'}
-////                       {'O','*','*'}
+////               {'*','O','*'}
+////               {'X','X','X'}
+////               {'O','*','*'}
         Board mockPlayedBoardHorizontalWin = new Board(3);
         Character[][] board = mockPlayedBoardHorizontalWin.getBoard();
         mockPlayedBoardHorizontalWin.SetPieceOnBoard(player1, 0, 1);
