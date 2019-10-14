@@ -38,26 +38,24 @@ public class Rules {
             // IF Y IS THE SAME
             if(startY == endY){
                 nextPosition[0] = (startX+1 <= boardBoundary) ? startX+1 : startX;
-//                if (startX++ <= boardBoundary){
-//                    startX++;
-//                }
                 nextPosition[1] = startY;
              return (board.getPosition(startX, startY) == board.getPosition(nextPosition[0], nextPosition[1])) && checkWin(nextPosition, endPosition, board);
             }
 //            //VERTICAL
 //            // X   Y++
 //            // IF X IS THE SAME
-
-
+            if(startX == endX){
+                nextPosition[0] = startX;
+                nextPosition[1] = (startY+1 <= boardBoundary) ? startY+1 : startY;;
+                return board.getPosition(startX, startY) == board.getPosition(nextPosition[0], nextPosition[1]) && checkWin(nextPosition, endPosition, board);
+            }
 //            //DIAGONAL LEFT RIGHT
 //            // X == Y
 //            // IF THEY ==
 
-
 //            //DIAGONAL RIGHT LEFT
 //            // X++ Y--
 //            //IF X IS LESS, Y IS MORE
-
 
             return false;
         }

@@ -57,9 +57,9 @@ public class RulesTest {
         Character[][] board = threeDown.getBoard();
         threeDown.SetPieceOnBoard(player1, 0, 0);
         threeDown.SetPieceOnBoard(player1, 0, 1);
-        threeDown.SetPieceOnBoard(player1, 2, 2);
-        int[] startPosition = {board[0][0]};
-        int[] endPosition = {board.length-1,0};
+        threeDown.SetPieceOnBoard(player1, 0, 2);
+        int[] startPosition = {0,0};
+        int[] endPosition = {0,board.length-1};
         boolean actual = checkWin(startPosition, endPosition, threeDown);
         boolean expected = true;
 
@@ -71,16 +71,17 @@ public class RulesTest {
 ////               {'X','*','*'}
 ////               {'*','X','*'}
 ////               {'*','*','X'}
-//            threeDiagonalTopLeft = new Board(3);
-//            threeDiagonalTopLeft.SetPieceOnBoard(player1, 0, 0);
-//            threeDiagonalTopLeft.SetPieceOnBoard(player1, 1, 1);
-//            threeDiagonalTopLeft.SetPieceOnBoard(player1, 2, 2);
-//            int[] lastMove = {1,1};
-//
-//        boolean actual = checkDiagonalsFromLastMove(threeDiagonalTopLeft, lastMove[0], lastMove[1]);
-//        boolean expected = true;
-//
-//        assertEquals(expected, actual);
+            threeDiagonalTopLeft = new Board(3);
+            Character[][] board = threeDiagonalTopLeft.getBoard();
+            threeDiagonalTopLeft.SetPieceOnBoard(player1, 0, 0);
+            threeDiagonalTopLeft.SetPieceOnBoard(player1, 1, 1);
+            threeDiagonalTopLeft.SetPieceOnBoard(player1, 2, 2);
+            int[] startPosition = {0,0};
+            int[] endPosition = {0,board.length-1};
+            boolean actual = checkWin(startPosition, endPosition, threeDown);
+            boolean expected = true;
+
+        assertEquals(expected, actual);
     }
 
     @Test
