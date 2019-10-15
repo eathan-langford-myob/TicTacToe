@@ -1,14 +1,12 @@
 package com.company;
 
-import java.util.Arrays;
-
 public class Rules {
 
     public static boolean checkBoardForWinState(Board board) {
-        int boardLength = board.getBoard().length;
+        int boardLength = board.getBoardLength();
 
         boolean isWinPresent;
-            for (int i = 0; i < board.getBoard().length; i++) {
+            for (int i = 0; i < boardLength; i++) {
                 isWinPresent =
                         checkWinInSingleDirection(0,i, boardLength-1,i, board) ||
                         checkWinInSingleDirection(i,0, i,boardLength-1, board);
@@ -22,7 +20,7 @@ public class Rules {
     }
 
     static boolean checkWinInSingleDirection(int startX, int startY, int endX, int endY, Board board) {
-        int boardBoundary = board.getBoard().length-1;
+        int boardBoundary = board.getBoardLength()-1;
         int nextPositionX;
         int nextPositionY;
 

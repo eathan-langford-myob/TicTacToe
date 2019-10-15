@@ -21,6 +21,11 @@ class InputValidator {
     }
 
     public static int[] splitIntoArrayOfInt(String input) {
-        return new int[2];
+        String[] splitString = input.split(",");
+        int[] intArrayFromInput = new int[splitString.length];
+        for (int i = 0; i < splitString.length; i++) {
+            intArrayFromInput[i] = Integer.parseInt(splitString[i]);
+        }
+        return intArrayFromInput;
     }
 }

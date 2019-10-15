@@ -35,4 +35,11 @@ public class InputValidatorTest {
         Assert.assertTrue(actual);
         }
 
+    @Test
+    public void shouldReturnArrayOfNumbersFromStringInput() {
+        int[] actual = InputValidator.splitIntoArrayOfInt(userInputValidString);
+        int[] expected = {2,0};
+
+        Assert.assertArrayEquals(expected, actual);
+    }
 }
