@@ -5,7 +5,6 @@ import java.util.Arrays;
 public class Rules {
 
     public static boolean checkBoardForWinState(Board board) {
-//        checkWinInSingleDirection(startPosition, endPosition, board);
         int boardLength = board.getBoard().length;
 
         boolean isWinPresent;

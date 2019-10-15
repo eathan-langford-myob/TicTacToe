@@ -19,4 +19,8 @@ class InputValidator {
         }
     return false;
     }
+
+    public static int[] splitIntoArrayOfInt(String input) {
+        return new int[2];
+    }
 }
