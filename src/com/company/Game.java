@@ -1,6 +1,6 @@
 package com.company;
 
-import com.company.IO.IOUserInputOutput;
+import com.company.IO.*;
 
 public class Game {
 
@@ -8,22 +8,28 @@ public class Game {
     private Player player1;
     private Player player2;
     private Player currentPlayer;
-    private IOUserInputOutput IO;
+    private IInput userInput;
+    private IOutput output;
+    private Render render;
 
-    public Game(int size, IOUserInputOutput userInput) {
+    public Game(int size, IInput userInput, IOutput output, Render renderer) {
         this.board = new Board(size);
         this.player1 = new Player(1);
         this.player2 = new Player(2);
         this.currentPlayer = player1;
-        this.IO = userInput;
+        this.userInput = userInput;
+        this.output = output;
+        this.render = renderer;
     }
 
-    public Game(IOUserInputOutput userInput) {
+    public Game(IInput userInput, IOutput output, Render renderer) {
         this.board = new Board(3);
         this.player1 = new Player(1);
         this.player2 = new Player(2);
         this.currentPlayer = player1;
-        this.IO = userInput;
+        this.userInput = userInput;
+        this.output = output;
+        this.render = renderer;
     }
 
     public Player getCurrentPlayer() {
@@ -36,6 +42,27 @@ public class Game {
     }
 
     String getInput(){
-        return IO.nextLine();
+        return userInput.getInput();
+    }
+
+    public void welcomeMessage() {
+        output.renderOutput("Welcome to Tic Tac Toe!");
+    }
+
+    public void displayBoard() {
+        output.renderOutput("Move accepted, here's the current board:");
+        render.renderBoard(board);
+    }
+
+    public int[] takeTurn() {
+        //display board
+        //display message asking for coord
+        //get coord
+        //----------------------
+        //validate coord
+        //---------------------
+        //place piece on board
+        //swap players
+        return null;
     }
 }

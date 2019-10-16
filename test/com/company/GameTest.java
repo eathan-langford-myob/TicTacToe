@@ -1,6 +1,8 @@
 package com.company;
 
-import com.company.IO.ConsoleInputOutput;
+import com.company.IO.IConsoleInput;
+import com.company.IO.IConsoleOutput;
+import com.company.IO.StringRender;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,7 +14,7 @@ public class GameTest {
 
     @Before
     public void setUp() {
-        game = new Game(3, new ConsoleInputOutput());
+        game = new Game(3, new IConsoleInput(), new IConsoleOutput(), new StringRender());
     }
 
     @After
@@ -27,4 +29,5 @@ public class GameTest {
 
         Assert.assertEquals(expected, actual);
     }
+
 }
