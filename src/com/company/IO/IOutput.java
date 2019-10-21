@@ -1,5 +1,5 @@
 package com.company.IO;
 
 public interface IOutput {
-    void renderOutput(String string);
+    void displayOutput(String string);
 }

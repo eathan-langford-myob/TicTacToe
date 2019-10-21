@@ -6,41 +6,38 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class TestBoard {
-    Board board;
+    Board plainBoard;
     Board mockBoard;
     Player player1;
+    Coordinates mockCoordinates = new Coordinates(0,2);
 
     @Before
-    public void setUp() throws Exception {
-        board = new Board(3);
+    public void setUp() {
+        plainBoard = new Board(3);
 
         mockBoard = new Board(3);
-        mockBoard.getBoard()[0][2] = 'X';
+        mockBoard.SetPieceOnBoard('X',mockCoordinates);
 
         player1 = new Player(1);
     }
 
     @After
-    public void tearDown() throws Exception {
-        board = null;
+    public void tearDown() {
+        plainBoard = null;
         mockBoard = null;
         player1 = null;
     }
 
     @Test
     public void shouldReturnGeneratedEmptyBoard() {
-        Character[][] actual = board.getBoard();
-        Character[][] expected = {
-                {'*','*','*'},
-                {'*','*','*'},
-                {'*','*','*'}
-        };
+        Character[][] actual = plainBoard.getBoard();
+        Character[][] expected = { {'*','*','*'}, {'*','*','*'}, {'*','*','*',}};
         Assert.assertArrayEquals(expected, actual);
     }
 
     @Test
     public void shouldReturnTrueForEmptySpot(){
-        boolean actual = board.isPositionAvailable(0, 2);
+        boolean actual = plainBoard.isPositionAvailable(mockCoordinates);
         boolean expected = true;
 
         Assert.assertEquals(expected, actual);
@@ -48,7 +45,7 @@ public class TestBoard {
 
     @Test
     public void shouldReturnFalseForTakenSpot(){
-        boolean actual = mockBoard.isPositionAvailable(0,2);
+        boolean actual = mockBoard.isPositionAvailable(mockCoordinates);
         boolean expected = false;
 
         Assert.assertEquals(expected, actual);
@@ -56,7 +53,8 @@ public class TestBoard {
 
     @Test
     public void shouldPlacePieceOnBoard(){
-        char actual = board.SetPieceOnBoard(player1, 0, 2);
+        plainBoard.SetPieceOnBoard(player1.getPiece(), mockCoordinates);
+        char actual = plainBoard.getPosition(mockCoordinates);
         char expected = player1.getPiece();
 
         Assert.assertEquals(expected, actual);

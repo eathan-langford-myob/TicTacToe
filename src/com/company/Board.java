@@ -2,38 +2,37 @@ package com.company;
 
 public class Board {
     private Character[][] board;
+    private int length;
 
     public Board(int size){
         char tile = '*';
         board = new Character[size][size];
-        for (Character[] column : board) {
-            for (int i = 0; i < column.length; i++) {
-                column[i] = tile;
+        length = size;
+        for (int x = 0; x < size; x++) {
+            for (int y = 0; y < size; y++) {
+                board[x][y] = tile;
             }
         }
     }
-
-
 
     public Character[][] getBoard(){
         return board;
     }
 
     public int getBoardLength() {
-        return board.length;
+        return length;
     }
 
-    public char getPosition(int x, int y) {
-        return board[x][y];
+    public Character getPosition(Coordinates queryCoordinates) {
+        return board[queryCoordinates.getX()][queryCoordinates.getY()];
     }
 
 
-    public boolean isPositionAvailable(int x, int y) {
-        return board[x][y]==('*');
+    public boolean isPositionAvailable(Coordinates queryCoordinates) {
+        return getPosition(queryCoordinates) == ('*');
     }
 
-    public char SetPieceOnBoard(Player player, int x, int y) {
-        board[x][y] = player.getPiece();
-        return board[x][y];
+    public void SetPieceOnBoard(Character piece, Coordinates queryCoordinates) {
+        board[queryCoordinates.getX()][queryCoordinates.getY()] = piece;
     }
 }

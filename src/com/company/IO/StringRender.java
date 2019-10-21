@@ -1,6 +1,7 @@
 package com.company.IO;
 
 import com.company.Board;
+import com.company.Coordinates;
 
 public class StringRender implements Render {
     @Override
@@ -9,11 +10,12 @@ public class StringRender implements Render {
         StringBuilder parsedBoard = new StringBuilder();
         for (int x = 0; x < boardLength; x++) {
             for (int y = 0; y < boardLength; y++) {
-                    parsedBoard.append(board.getPosition(x, y));
-                    if (y != boardLength-1){
-                        parsedBoard.append("  ⁻  ");
-                    }
+                Coordinates coordinate = new Coordinates(x,y);
+                parsedBoard.append(board.getPosition(coordinate));
+                if (y != boardLength-1){
+                    parsedBoard.append("  ⁻  ");
                 }
+            }
             if(x != boardLength-1) {
                 parsedBoard.append("\n");
                 for (int i = 0; i < boardLength; i++) {

@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 
+
 import static com.company.Rules.*;
 import static org.junit.Assert.*;
 
@@ -37,13 +38,11 @@ public class RulesTest {
 //            {'*','*','*'}
 //            {'*','*','*'}
         threeAcross = new Board(3);
-        Character[][] board = threeAcross.getBoard();
-        threeAcross.SetPieceOnBoard(player1, 0, 0);
-        threeAcross.SetPieceOnBoard(player1, 1, 0);
-        threeAcross.SetPieceOnBoard(player1, 2, 0);
-        int[] startPosition = {0,0};
-        int[] endPosition = {board.length-1,0};
-        boolean actual = checkWinInSingleDirection(startPosition[0],startPosition[1], endPosition[0], endPosition[1], threeAcross);
+        threeAcross.SetPieceOnBoard(player1.getPiece(), new Coordinates(0, 0));
+        threeAcross.SetPieceOnBoard(player1.getPiece(), new Coordinates(1, 0));
+        threeAcross.SetPieceOnBoard(player1.getPiece(), new Coordinates(2, 0));
+        Coordinates[] coordinates = { new Coordinates(0,0) , new Coordinates(threeAcross.getBoardLength()-1,0)};
+        boolean actual = checkWinInSingleDirection(coordinates, threeAcross);
         boolean expected = true;
 
         Assert.assertEquals(expected, actual);
@@ -54,32 +53,28 @@ public class RulesTest {
 //            {'X','*','*'}
 //            {'X','*','*'}
         threeDown = new Board(3);
-        Character[][] board = threeDown.getBoard();
-        threeDown.SetPieceOnBoard(player1, 0, 0);
-        threeDown.SetPieceOnBoard(player1, 0, 1);
-        threeDown.SetPieceOnBoard(player1, 0, 2);
-        int[] startPosition = {0,0};
-        int[] endPosition = {0,board.length-1};
-        boolean actual = checkWinInSingleDirection(startPosition[0],startPosition[1], endPosition[0], endPosition[1], threeDown);
+        threeDown.SetPieceOnBoard(player1.getPiece(), new Coordinates(0, 0));
+        threeDown.SetPieceOnBoard(player1.getPiece(), new Coordinates(0, 1));
+        threeDown.SetPieceOnBoard(player1.getPiece(), new Coordinates(0, 2));
+        Coordinates[] coordinates = { new Coordinates(0,0) , new Coordinates(0,threeDown.getBoardLength()-1) };
+        boolean actual = checkWinInSingleDirection(coordinates, threeDown);
         boolean expected = true;
 
         Assert.assertEquals(expected, actual);
     }
-//
+    //
     @Test
     public void shouldReturnWinConditionForDiagonalLeftTopDown() {
 ////               {'X','*','*'}
 ////               {'*','X','*'}
 ////               {'*','*','X'}
-            threeDiagonalTopLeft = new Board(3);
-            Character[][] board = threeDiagonalTopLeft.getBoard();
-            threeDiagonalTopLeft.SetPieceOnBoard(player1, 0, 0);
-            threeDiagonalTopLeft.SetPieceOnBoard(player1, 1, 1);
-            threeDiagonalTopLeft.SetPieceOnBoard(player1, 2, 2);
-            int[] startPosition = {0,0};
-            int[] endPosition = {board.length-1,board.length-1};
-            boolean actual = checkWinInSingleDirection(startPosition[0],startPosition[1], endPosition[0], endPosition[1], threeDiagonalTopLeft);
-            boolean expected = true;
+        threeDiagonalTopLeft = new Board(3);
+        threeDiagonalTopLeft.SetPieceOnBoard(player1.getPiece(), new Coordinates(0, 0));
+        threeDiagonalTopLeft.SetPieceOnBoard(player1.getPiece(), new Coordinates(1, 1));
+        threeDiagonalTopLeft.SetPieceOnBoard(player1.getPiece(), new Coordinates(2, 2));
+        Coordinates[] coordinates = { new Coordinates(0,0) , new Coordinates(threeDiagonalTopLeft.getBoardLength()-1,threeDiagonalTopLeft.getBoardLength()-1) };
+        boolean actual = checkWinInSingleDirection(coordinates, threeDiagonalTopLeft);
+        boolean expected = true;
 
         assertEquals(expected, actual);
     }
@@ -90,13 +85,11 @@ public class RulesTest {
 ////               {'*','X','*'}
 ////               {'X','*','*'}
         threeDiagonalTopRight = new Board(3);
-        Character[][] board = threeDiagonalTopRight.getBoard();
-        threeDiagonalTopRight.SetPieceOnBoard(player1, 2, 0);
-        threeDiagonalTopRight.SetPieceOnBoard(player1, 1, 1);
-        threeDiagonalTopRight.SetPieceOnBoard(player1, 0, 2);
-        int[] startPosition = {0,board.length-1};
-        int[] endPosition = {board.length-1,0};
-        boolean actual = checkWinInSingleDirection(startPosition[0],startPosition[1], endPosition[0], endPosition[1], threeDiagonalTopRight);
+        threeDiagonalTopRight.SetPieceOnBoard(player1.getPiece(), new Coordinates(2, 0));
+        threeDiagonalTopRight.SetPieceOnBoard(player1.getPiece(), new Coordinates(1, 1));
+        threeDiagonalTopRight.SetPieceOnBoard(player1.getPiece(), new Coordinates(0, 2));
+        Coordinates[] coordinates = { new Coordinates(0,threeDiagonalTopRight.getBoardLength()-1), new Coordinates(threeDiagonalTopRight.getBoardLength()-1,0)};
+        boolean actual = checkWinInSingleDirection(coordinates, threeDiagonalTopRight);
         boolean expected = true;
 
         assertEquals(expected, actual);
@@ -108,15 +101,15 @@ public class RulesTest {
 ////               {'X','X','X'}
 ////               {'O','*','*'}
         Board mockPlayedBoardHorizontalWin = new Board(3);
-        Character[][] board = mockPlayedBoardHorizontalWin.getBoard();
-        mockPlayedBoardHorizontalWin.SetPieceOnBoard(player1, 0, 1);
-        mockPlayedBoardHorizontalWin.SetPieceOnBoard(player2, 2, 1);
-        mockPlayedBoardHorizontalWin.SetPieceOnBoard(player1, 1, 1);
-        mockPlayedBoardHorizontalWin.SetPieceOnBoard(player2, 0, 2);
-        mockPlayedBoardHorizontalWin.SetPieceOnBoard(player1, 2, 1);
+        mockPlayedBoardHorizontalWin.SetPieceOnBoard(player1.getPiece(), new Coordinates(0, 1));
+        mockPlayedBoardHorizontalWin.SetPieceOnBoard(player2.getPiece(), new Coordinates(2, 1));
+        mockPlayedBoardHorizontalWin.SetPieceOnBoard(player1.getPiece(), new Coordinates(1, 1));
+        mockPlayedBoardHorizontalWin.SetPieceOnBoard(player2.getPiece(), new Coordinates(0, 2));
+        mockPlayedBoardHorizontalWin.SetPieceOnBoard(player1.getPiece(), new Coordinates(2, 1));
         boolean actual = checkBoardForWinState(mockPlayedBoardHorizontalWin);
         boolean expected = true;
 
         assertEquals(expected, actual);
     }
+
 }

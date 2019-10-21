@@ -4,7 +4,7 @@ import com.company.IO.*;
 
 public class Game {
 
-    private Board board;
+    public Board board;
     private Player player1;
     private Player player2;
     private Player currentPlayer;
@@ -41,28 +41,43 @@ public class Game {
         return currentPlayer = (currentPlayer == player1 ? player2 : player1);
     }
 
-    String getInput(){
+    private String getInput(){
         return userInput.getInput();
     }
 
-    public void welcomeMessage() {
-        output.renderOutput("Welcome to Tic Tac Toe!");
+    public String welcomeMessage() {
+        return "Welcome to Tic Tac Toe!";
     }
 
-    public void displayBoard() {
-        output.renderOutput("Move accepted, here's the current board:");
-        render.renderBoard(board);
+    public String displayBoard() {
+        return render.renderBoard(board);
     }
 
-    public int[] takeTurn() {
-        //display board
-        //display message asking for coord
-        //get coord
-        //----------------------
-        //validate coord
-        //---------------------
-        //place piece on board
-        //swap players
-        return null;
+    public String askForCoordinates() {
+        return "Player " + currentPlayer.getPlayer() + "enter a coord x,y to place your " + currentPlayer.getPiece() + " or enter 'q' to give up: ";
+    }
+
+    public boolean takeTurn() {
+        Coordinates playerCoordinates;
+
+        output.displayOutput(displayBoard());
+
+        String userResponse = getInput();
+
+        if (InputValidator.isValidFormatWithDigits(userResponse) && InputValidator.isValidInputWithinBoardRange(userResponse, board.getBoardLength())) {
+            playerCoordinates = InputValidator.splitIntoCoordinate(userResponse);
+            if (board.isPositionAvailable(playerCoordinates)) {
+                board.SetPieceOnBoard(currentPlayer.getPiece(), playerCoordinates);
+                swapPlayers();
+                output.displayOutput("Move accepted, here's the current board:");
+                return true;
+            } else {
+                output.displayOutput("Oh no, a piece is already at this place! Try again...");
+                return false;
+            }
+        }
+//        }
+        output.displayOutput("Oh no, that seems to be an invalid input, please try again!");
+        return false;
     }
 }
