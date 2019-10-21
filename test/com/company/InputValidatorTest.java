@@ -29,17 +29,17 @@ public class InputValidatorTest {
     @Test
     public void shouldReturnTrueForNumbersInStringWithinBoundsOfBoard() {
         Board board = new Board(3);
-        int boardBoundary = board.getBoard().length -1;
-        boolean actual = InputValidator.isValidInputWithinBoardRange(userInputValidString, boardBoundary);
+        int boardLength = board.getBoardLength();
+        boolean actual = InputValidator.isValidInputWithinBoardRange(userInputValidString, boardLength);
 
         Assert.assertTrue(actual);
-        }
+    }
 
     @Test
     public void shouldReturnArrayOfNumbersFromStringInput() {
-        int[] actual = InputValidator.splitIntoArrayOfInt(userInputValidString);
-        int[] expected = {2,0};
+        Coordinates actual = InputValidator.splitIntoCoordinate(userInputValidString);
+        Coordinates expected = new Coordinates(2,0);
 
-        Assert.assertArrayEquals(expected, actual);
+        Assert.assertEquals(expected, actual);
     }
 }

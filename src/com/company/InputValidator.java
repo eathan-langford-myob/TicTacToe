@@ -9,23 +9,21 @@ class InputValidator {
         return false;
     }
 
-    public static boolean isValidInputWithinBoardRange(String input, int boardBounds) {
+    public static boolean isValidInputWithinBoardRange(String input, int boardLength) {
+        int boardBounds = boardLength-1;
         String[] stringArrayOfInput = input.split(",");
         int[] arrayFromSplitInput = new int[2];
         arrayFromSplitInput[0] = Integer.parseInt(stringArrayOfInput[0]);
         arrayFromSplitInput[1] = Integer.parseInt(stringArrayOfInput[1]);
-        if ( (arrayFromSplitInput[0] <= boardBounds) && (arrayFromSplitInput[1] <= boardBounds) && (stringArrayOfInput[0].length() == stringArrayOfInput[1].length())){
-            return true;
-        }
-    return false;
+        return (arrayFromSplitInput[0] <= boardBounds) && (arrayFromSplitInput[1] <= boardBounds) && (stringArrayOfInput[0].length() == stringArrayOfInput[1].length());
     }
 
-    public static int[] splitIntoArrayOfInt(String input) {
+    public static Coordinates splitIntoCoordinate(String input) {
         String[] splitString = input.split(",");
         int[] intArrayFromInput = new int[splitString.length];
         for (int i = 0; i < splitString.length; i++) {
             intArrayFromInput[i] = Integer.parseInt(splitString[i]);
         }
-        return intArrayFromInput;
+        return new Coordinates(intArrayFromInput[0], intArrayFromInput[1]);
     }
 }
