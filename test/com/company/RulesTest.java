@@ -41,7 +41,7 @@ public class RulesTest {
         threeAcross.SetPieceOnBoard(player1.getPiece(), new Coordinates(0, 0));
         threeAcross.SetPieceOnBoard(player1.getPiece(), new Coordinates(1, 0));
         threeAcross.SetPieceOnBoard(player1.getPiece(), new Coordinates(2, 0));
-        Coordinates[] coordinates = { new Coordinates(0,0) , new Coordinates(threeAcross.getBoardLength()-1,0)};
+        Coordinates[] coordinates = { new Coordinates(0,0) , new Coordinates(threeAcross.BoardLength()-1,0)};
         boolean actual = checkWinInSingleDirection(coordinates, threeAcross);
         boolean expected = true;
 
@@ -56,7 +56,7 @@ public class RulesTest {
         threeDown.SetPieceOnBoard(player1.getPiece(), new Coordinates(0, 0));
         threeDown.SetPieceOnBoard(player1.getPiece(), new Coordinates(0, 1));
         threeDown.SetPieceOnBoard(player1.getPiece(), new Coordinates(0, 2));
-        Coordinates[] coordinates = { new Coordinates(0,0) , new Coordinates(0,threeDown.getBoardLength()-1) };
+        Coordinates[] coordinates = { new Coordinates(0,0) , new Coordinates(0,threeDown.BoardLength()-1) };
         boolean actual = checkWinInSingleDirection(coordinates, threeDown);
         boolean expected = true;
 
@@ -72,7 +72,7 @@ public class RulesTest {
         threeDiagonalTopLeft.SetPieceOnBoard(player1.getPiece(), new Coordinates(0, 0));
         threeDiagonalTopLeft.SetPieceOnBoard(player1.getPiece(), new Coordinates(1, 1));
         threeDiagonalTopLeft.SetPieceOnBoard(player1.getPiece(), new Coordinates(2, 2));
-        Coordinates[] coordinates = { new Coordinates(0,0) , new Coordinates(threeDiagonalTopLeft.getBoardLength()-1,threeDiagonalTopLeft.getBoardLength()-1) };
+        Coordinates[] coordinates = { new Coordinates(0,0) , new Coordinates(threeDiagonalTopLeft.BoardLength()-1,threeDiagonalTopLeft.BoardLength()-1) };
         boolean actual = checkWinInSingleDirection(coordinates, threeDiagonalTopLeft);
         boolean expected = true;
 
@@ -88,7 +88,7 @@ public class RulesTest {
         threeDiagonalTopRight.SetPieceOnBoard(player1.getPiece(), new Coordinates(2, 0));
         threeDiagonalTopRight.SetPieceOnBoard(player1.getPiece(), new Coordinates(1, 1));
         threeDiagonalTopRight.SetPieceOnBoard(player1.getPiece(), new Coordinates(0, 2));
-        Coordinates[] coordinates = { new Coordinates(0,threeDiagonalTopRight.getBoardLength()-1), new Coordinates(threeDiagonalTopRight.getBoardLength()-1,0)};
+        Coordinates[] coordinates = { new Coordinates(0,threeDiagonalTopRight.BoardLength()-1), new Coordinates(threeDiagonalTopRight.BoardLength()-1,0)};
         boolean actual = checkWinInSingleDirection(coordinates, threeDiagonalTopRight);
         boolean expected = true;
 
@@ -99,12 +99,12 @@ public class RulesTest {
     public void shouldReturnTrueForWinCheckingWholeBoard() {
 ////               {'*','O','*'}
 ////               {'X','X','X'}
-////               {'O','*','*'}
+////               {'*','O','*'}
         Board mockPlayedBoardHorizontalWin = new Board(3);
         mockPlayedBoardHorizontalWin.SetPieceOnBoard(player1.getPiece(), new Coordinates(0, 1));
         mockPlayedBoardHorizontalWin.SetPieceOnBoard(player2.getPiece(), new Coordinates(2, 1));
         mockPlayedBoardHorizontalWin.SetPieceOnBoard(player1.getPiece(), new Coordinates(1, 1));
-        mockPlayedBoardHorizontalWin.SetPieceOnBoard(player2.getPiece(), new Coordinates(0, 2));
+        mockPlayedBoardHorizontalWin.SetPieceOnBoard(player2.getPiece(), new Coordinates(1, 2));
         mockPlayedBoardHorizontalWin.SetPieceOnBoard(player1.getPiece(), new Coordinates(2, 1));
         boolean actual = checkBoardForWinState(mockPlayedBoardHorizontalWin);
         boolean expected = true;

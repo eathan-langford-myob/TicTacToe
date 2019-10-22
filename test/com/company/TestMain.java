@@ -1,8 +1,15 @@
 package com.company;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import com.company.IO.*;
+import org.junit.*;
 
 public class TestMain {
+    private Game game;
 
+    @Before
+    public void setUp() {
+    }
+
+    @After
+    public void teardown() {
+    }
 }

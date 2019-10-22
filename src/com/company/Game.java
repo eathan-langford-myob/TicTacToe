@@ -45,39 +45,59 @@ public class Game {
         return userInput.getInput();
     }
 
-    public String welcomeMessage() {
-        return "Welcome to Tic Tac Toe!";
+    public void welcomeMessage() {
+        output.displayOutput("Welcome to Tic Tac Toe!");
     }
 
-    public String displayBoard() {
-        return render.renderBoard(board);
+    public void displayBoard() {
+        output.displayOutput(render.renderBoard(board));
     }
 
-    public String askForCoordinates() {
-        return "Player " + currentPlayer.getPlayer() + "enter a coord x,y to place your " + currentPlayer.getPiece() + " or enter 'q' to give up: ";
+    public void askForCoordinates() {
+        output.displayOutput("Player " + currentPlayer.getPlayer() + " enter a coord x,y to place your " + currentPlayer.getPiece() + " or enter 'q' to give up: ");
+    }
+
+    public int getBoardLength() {
+        return board.BoardLength();
+    }
+
+    public void noMovesLeft() {
+        output.displayOutput("No more moves left, it's a tie!");
+    }
+
+    public boolean evaluateBoard() {
+        return Rules.checkBoardForWinState(board);
+    }
+
+    public void winnerMessage() {
+        output.displayOutput("Congratulations Player " + currentPlayer.getPlayer() + " you win!");
+    }
+
+    public void goodbye() {
+        output.displayOutput("Thanks for playing, goodbye!");
     }
 
     public boolean takeTurn() {
         Coordinates playerCoordinates;
 
-        output.displayOutput(displayBoard());
-
         String userResponse = getInput();
-
-        if (InputValidator.isValidFormatWithDigits(userResponse) && InputValidator.isValidInputWithinBoardRange(userResponse, board.getBoardLength())) {
+        if (InputValidator.isQuitKeyword(userResponse)){
+            System.exit(0);
+        }
+        if (InputValidator.isValidFormatWithDigits(userResponse) && InputValidator.isValidInputWithinBoardRange(userResponse, board.BoardLength())) {
             playerCoordinates = InputValidator.splitIntoCoordinate(userResponse);
             if (board.isPositionAvailable(playerCoordinates)) {
                 board.SetPieceOnBoard(currentPlayer.getPiece(), playerCoordinates);
-                swapPlayers();
-                output.displayOutput("Move accepted, here's the current board:");
+                output.displayOutput("Move accepted, here's the current board: ");
                 return true;
             } else {
-                output.displayOutput("Oh no, a piece is already at this place! Try again...");
+                output.displayOutput("Oh no, a piece is already at this place! Try again: ");
                 return false;
             }
         }
 //        }
-        output.displayOutput("Oh no, that seems to be an invalid input, please try again!");
+        output.displayOutput("Oh no, that seems to be an invalid input, please try again: ");
         return false;
     }
+
 }

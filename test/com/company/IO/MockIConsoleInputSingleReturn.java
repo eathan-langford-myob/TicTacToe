@@ -1,9 +1,9 @@
 package com.company.IO;
 
-public class MockIConsoleInput implements IInput {
+public class MockIConsoleInputSingleReturn implements IInput {
     public String mockInput;
 
-    public MockIConsoleInput(String input) {
+    public MockIConsoleInputSingleReturn(String input) {
         this.mockInput = input;
     }
 
