@@ -19,7 +19,7 @@ public class Board {
         return board;
     }
 
-    public int getBoardLength() {
+    public int BoardLength() {
         return length;
     }
 

@@ -2,7 +2,7 @@ package com.company;
 
 import com.company.IO.IConsoleInput;
 import com.company.IO.IConsoleOutput;
-import com.company.IO.MockIConsoleInput;
+import com.company.IO.MockIConsoleInputSingleReturn;
 import com.company.IO.StringRender;
 import org.junit.*;
 
@@ -30,7 +30,7 @@ public class GameTest {
 
     @Test
     public void shouldReturnFalseForInvalidInput() {
-        game = new Game(3, new MockIConsoleInput("3,2"), new IConsoleOutput(), new StringRender());
+        game = new Game(3, new MockIConsoleInputSingleReturn("4,2"), new IConsoleOutput(), new StringRender());
 
         boolean actual = game.takeTurn();
         boolean expected = false;
@@ -41,7 +41,7 @@ public class GameTest {
     @Test
     public void shouldReturnFalseForTakenSpotFromInput() {
 
-        game = new Game(3, new MockIConsoleInput("1,2"), new IConsoleOutput(), new StringRender());
+        game = new Game(3, new MockIConsoleInputSingleReturn("2,3"), new IConsoleOutput(), new StringRender());
         Coordinates coordinates = new Coordinates(1,2);
         game.board.SetPieceOnBoard( 'X',coordinates);
         boolean actual = game.takeTurn();
@@ -52,7 +52,7 @@ public class GameTest {
 
     @Test
     public void shouldReturnTrueForSuccessfulMove() {
-        game = new Game(3, new MockIConsoleInput("1,2"), new IConsoleOutput(), new StringRender());
+        game = new Game(3, new MockIConsoleInputSingleReturn("1,2"), new IConsoleOutput(), new StringRender());
         boolean actual = game.takeTurn();
         boolean expected = true;
 

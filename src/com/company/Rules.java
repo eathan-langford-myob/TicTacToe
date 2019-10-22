@@ -7,7 +7,7 @@ public class Rules {
     private static int ending = 1;
 
     public static boolean checkBoardForWinState(Board board) {
-        int boardLength = board.getBoardLength();
+        int boardLength = board.BoardLength();
         boolean isWinPresent;
 
         for (int i = 0; i < boardLength; i++) {
@@ -44,7 +44,7 @@ public class Rules {
     }
 
     static boolean checkWinInSingleDirection(Coordinates[] coordinates, Board board) {
-        int boardBoundary = board.getBoardLength()-1;
+        int boardBoundary = board.BoardLength()-1;
         Coordinates[] nextCoordinates = new Coordinates[2];
         nextCoordinates[ending] = coordinates[ending];
 

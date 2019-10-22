@@ -15,12 +15,19 @@ public class StringRenderTest {
     }
 
     @Test
-    public void renderBoard() {
+    public void renderEmptyBoard() {
         Render boardRenderer = new StringRender();
         Board board = new Board(3);
 
         String actual = boardRenderer.renderBoard(board);
-        String expected = "*  ⁻  *  ⁻  *\nᶦ  ⁻  ᶦ  ⁻  ᶦ\n*  ⁻  *  ⁻  *\nᶦ  ⁻  ᶦ  ⁻  ᶦ\n*  ⁻  *  ⁻  *";
+        String expected =
+                        "      1     2     3\n" +
+                        "      :     :     :   \n" +
+                        "1  :  *     *     *\n" +
+                        "                   \n" +
+                        "2  :  *     *     *\n" +
+                        "                   \n" +
+                        "3  :  *     *     *";
         Assert.assertEquals(expected, actual);
     }
 }
